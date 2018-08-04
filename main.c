@@ -40,14 +40,11 @@ int		main(int a_c, char **a_v)
 	char *inpt_file;
 
 	if (a_c != 2)
-			ft_error();
-	if (a_c == 2) 
-	{
-		inpt_file = ft_reader(a_v[1]);
-		if (ft_checker(inpt_file) == 0)
-			ft_error();
-
-
-	}
+		ft_error();
+{
+	inpt_file = ft_reader(a_v[1]);
+	if (ft_checker(inpt_file) == 0)
+	  ft_error();
+}
 	return (0);
 }
