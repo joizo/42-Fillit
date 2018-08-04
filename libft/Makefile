@@ -6,7 +6,7 @@
 #    By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/10 21:38:21 by ofedoryc          #+#    #+#              #
-#    Updated: 2018/08/04 16:56:34 by mpetruno         ###   ########.fr        #
+#    Updated: 2018/08/04 20:09:15 by mpetruno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,25 +36,19 @@ HEADERS = libft.h
 
 FLAGS = -Wall -Wextra -Werror
 
-obj:
-	@echo $(OFILES)
-
-src:
-	@echo $(FILES)
-
 all: $(NAME)
 
 $(NAME): $(OFILES) $(HEADERS)
-	@ar rc $(NAME) $(OFILES)
+	ar rc $(NAME) $(OFILES)
 
 $(OFILES): %.o:%.c
-	@gcc $(FLAGS) -c $< -o $@
+	gcc $(FLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OFILES)
+	rm -f $(OFILES)
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

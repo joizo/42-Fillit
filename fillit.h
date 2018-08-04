@@ -6,7 +6,7 @@
 /*   By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 21:30:17 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/07/04 21:30:19 by ofedoryc         ###   ########.fr       */
+/*   Updated: 2018/08/04 20:00:52 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,14 @@
 # include "./libft/libft.h"
 # include <fcntl.h> // for open
 
+typedef	struct	s_tetr
+{
+	char cell[4][4];
+}				t_tetr;
+
 //ft_error.c
 void	ft_error(void);
+void	ft_show_usage(void);
 
 //main.c
 char	*ft_reader(char *a_v); // открывает, читает, и закрывает файл
@@ -33,5 +39,21 @@ int		ft_comm_tetr(char *str); // проверка связей между # в �
 int		ft_tetr_valid_check(char *str); // проверка квадрата на невалидные символы
 int		ft_resh_check(char *str); // проверка на #, должно быть только 4
 int		ft_sym_row_check(char *str); // проверка к-ство символов в строке и рядов
+
+/*
+//tetr.c
+t_tetr	*offset(t_tetr *t);
+t_tetr	*make_tetr(char *s);
+
+//map.c
+t_list	*make_list(char *inp);
+t_map	*make_map(int size);
+void	print_map(t_map *map);
+
+//solver.c
+int		solve(t_map *map);
+
+*/
+
 
 #endif

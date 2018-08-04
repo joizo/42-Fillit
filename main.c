@@ -6,45 +6,48 @@
 /*   By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 21:30:26 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/07/04 21:30:29 by ofedoryc         ###   ########.fr       */
+/*   Updated: 2018/08/04 21:04:59 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-#define BUF_SIZE 547
+#define BUF_SIZE 545
 
 char	*ft_reader(char *a_v)
 {
 	int f_open;
 	int f_read;
-	char buf[BUF_SIZE + 1];
-	char *main_str;
+	char *buf;
 
-	f_open = open(a_v, O_RDONLY);
-	if (f_open == -1)
+	if ((f_open = open(a_v, O_RDONLY)) == -1)
 		ft_error();
+	buf = ft_strnew(BUF_SIZE);
 	f_read = read(f_open, buf, BUF_SIZE);
 	if (buf[0] == 0)
 		ft_error();
-	buf[f_read] = '\0';
-	main_str = ft_strdup(buf);
-	close (f_open);
-	if (close(f_open == -1))
+	if (close(f_open) == -1)
 		ft_error();
-	return (main_str);
+	return (buf);
 }
 
 int		main(int a_c, char **a_v)
 {
-	char *inpt_file;
+	char	*input_file;
+//	t_list	*list;
+//	t_map	*map;
+
+ft_putstr(a_v[1]);
+ft_putstr(": ");
 
 	if (a_c != 2)
-		ft_error();
-{
-	inpt_file = ft_reader(a_v[1]);
-	if (ft_checker(inpt_file) == 0)
+		ft_show_usage();
+	input_file = ft_reader(a_v[1]);
+	if (ft_checker(input_file) == 0)
 	  ft_error();
-}
+//	list = make_list(input_file);
+//	map = make_map(2);
+//	solve(map);
+//	print_map(map);
 	return (0);
 }

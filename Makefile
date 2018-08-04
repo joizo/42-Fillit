@@ -6,13 +6,21 @@
 #    By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/15 00:08:04 by ofedoryc          #+#    #+#              #
-#    Updated: 2018/07/21 23:06:18 by ofedoryc         ###   ########.fr        #
+#    Updated: 2018/08/04 21:04:52 by mpetruno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-FILES = ./*.c
+CC = gcc
+
+FILES = ft_checker.c \
+		ft_error.c \
+		ft_global_checker.c \
+		ft_tetr_checker.c \
+		main.c
+
+LIB = ./libft/libft.a
 
 LIBFT = ./libft/
 
@@ -20,15 +28,22 @@ HEAD = fillit.h
 
 FLAGS = -Wall -Wextra -Werror
 
-O_FILES = *.o
+O_FILES = $(FILES:.c=.o)
 
 all: $(NAME)
 
-$(NAME): lib
-	gcc $(FILES) -I $(HEAD) -L $(LIBFT) -lft -o $(NAME)
+$(NAME): $(LIB) $(O_FILES)
+	@echo "Assempling executable..."
+	$(CC) $(O_FILES) $(LIB) $(FLAGS) -I $(HEAD) -o $(NAME)
+	@edho "End assembling"
 
-lib:
+$(LIB):
 	make -C $(LIBFT)
+
+%.o: %.c
+	@echo "Compiling file... "
+	$(CC) -c $^ $(FLAGS)
+	@echo "End compiling"
 
 clean:
 	rm -f $(O_FILES)
@@ -40,4 +55,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean fclean all re lib
+.PHONY: all clean fclean re
