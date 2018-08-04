@@ -6,7 +6,7 @@
 #    By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/10 21:38:21 by ofedoryc          #+#    #+#              #
-#    Updated: 2018/04/10 21:38:23 by ofedoryc         ###   ########.fr        #
+#    Updated: 2018/08/04 16:56:34 by mpetruno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,12 @@ OFILES = $(FILES:.c=.o)
 HEADERS = libft.h
 
 FLAGS = -Wall -Wextra -Werror
+
+obj:
+	@echo $(OFILES)
+
+src:
+	@echo $(FILES)
 
 all: $(NAME)
 
