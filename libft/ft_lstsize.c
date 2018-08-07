@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_global_cheker.c                                 :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mpetruno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/15 03:01:14 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/07/15 03:01:18 by ofedoryc         ###   ########.fr       */
+/*   Created: 2018/08/07 15:57:47 by mpetruno          #+#    #+#             */
+/*   Updated: 2018/08/07 16:32:01 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	ft_tetr_count_check(char *str)
+int	ft_lstsize(t_list *lst)
 {
-	int i;
-	int count;
+	int	size;
 
-	i = 0;
-	count = 0;
-	while (str[i++])
+	size = 0;
+	while (lst)
 	{
-		if (str[i] == '\n' && str[i + 1] == '\n')
-		count++;
+		size++;
+		lst = lst->next;
 	}
-	return (count);
+	return (size);
 }
+

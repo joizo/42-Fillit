@@ -6,7 +6,7 @@
 #    By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/15 00:08:04 by ofedoryc          #+#    #+#              #
-#    Updated: 2018/08/07 09:36:38 by mpetruno         ###   ########.fr        #
+#    Updated: 2018/08/07 15:08:56 by mpetruno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,9 @@ CC = gcc
 
 FILES = ft_checker.c \
 		ft_error.c \
-		ft_global_cheсker.c \
-		ft_tetr_cheсker.c \
+		ft_global_checker.c \
+		ft_tetr_checker.c \
+		tetr.c \
 		main.c
 
 LIB = ./libft/libft.a

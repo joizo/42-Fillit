@@ -6,7 +6,7 @@
 /*   By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 21:30:17 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/08/04 20:00:52 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/07 17:23:08 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,14 @@
 
 typedef	struct	s_tetr
 {
-	char cell[4][4];
+	char		cell[4][4];
 }				t_tetr;
+
+typedef	struct	s_map
+{
+	int			size;
+	char		**cell;
+}				t_map;
 
 //ft_error.c
 void	ft_error(void);
@@ -40,13 +46,14 @@ int		ft_tetr_valid_check(char *str); // проверка квадрата на �
 int		ft_resh_check(char *str); // проверка на #, должно быть только 4
 int		ft_sym_row_check(char *str); // проверка к-ство символов в строке и рядов
 
-/*
+
 //tetr.c
-t_tetr	*offset(t_tetr *t);
+//t_tetr	*offset(t_tetr *t);
 t_tetr	*make_tetr(char *s);
 
 //map.c
 t_list	*make_list(char *inp);
+/*
 t_map	*make_map(int size);
 void	print_map(t_map *map);
 
