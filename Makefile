@@ -6,7 +6,7 @@
 #    By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/15 00:08:04 by ofedoryc          #+#    #+#              #
-#    Updated: 2018/08/04 21:04:52 by mpetruno         ###   ########.fr        #
+#    Updated: 2018/08/07 09:36:38 by mpetruno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ CC = gcc
 
 FILES = ft_checker.c \
 		ft_error.c \
-		ft_global_checker.c \
-		ft_tetr_checker.c \
+		ft_global_cheсker.c \
+		ft_tetr_cheсker.c \
 		main.c
 
 LIB = ./libft/libft.a
@@ -30,12 +30,18 @@ FLAGS = -Wall -Wextra -Werror
 
 O_FILES = $(FILES:.c=.o)
 
+#list_obj:
+#	@echo $(O_FILES)
+#
+#list_src:
+#	@echo $(FILES)
+
 all: $(NAME)
 
-$(NAME): $(LIB) $(O_FILES)
+$(NAME): $(LIB) $(HEAD) $(O_FILES)
 	@echo "Assempling executable..."
 	$(CC) $(O_FILES) $(LIB) $(FLAGS) -I $(HEAD) -o $(NAME)
-	@edho "End assembling"
+	@echo "End assembling"
 
 $(LIB):
 	make -C $(LIBFT)

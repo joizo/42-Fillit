@@ -6,11 +6,13 @@
 /*   By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 21:30:26 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/08/04 21:04:59 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/07 13:22:31 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+int	ft_tetr_elm_check(char *s);
 
 #define BUF_SIZE 545
 
@@ -37,14 +39,17 @@ int		main(int a_c, char **a_v)
 //	t_list	*list;
 //	t_map	*map;
 
-ft_putstr(a_v[1]);
-ft_putstr(": ");
+//ft_putstr(a_v[1]);
+//ft_putstr(": ");
 
 	if (a_c != 2)
 		ft_show_usage();
 	input_file = ft_reader(a_v[1]);
+
 	if (ft_checker(input_file) == 0)
-	  ft_error();
+		ft_error();
+	else
+		ft_putchar('\n');
 //	list = make_list(input_file);
 //	map = make_map(2);
 //	solve(map);
