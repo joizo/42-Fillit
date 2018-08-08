@@ -6,7 +6,7 @@
 /*   By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 21:30:26 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/08/07 18:03:31 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/08 17:44:38 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		main(int a_c, char **a_v)
 {
 	char	*input_file;
 	t_list	*list;
-//	t_map	*map;
+	t_map	*map;
 
 //ft_putstr(a_v[1]);
 //ft_putstr(": ");
@@ -51,9 +51,9 @@ int		main(int a_c, char **a_v)
 	else
 		ft_putchar('\n');
 	list = make_list(input_file);
-	print_list(list); // for debug only
+//	print_list(list); // for debug only
 	map = make_map(2);
 //	solve(map);
-//	print_map(map);
+	print_map(map);
 	return (0);
 }

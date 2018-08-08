@@ -6,7 +6,7 @@
 /*   By: mpetruno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 14:28:05 by mpetruno          #+#    #+#             */
-/*   Updated: 2018/08/07 17:18:03 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/08 17:32:19 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		print_list(t_list *l)
 	}
 }
 
-static void	offset_h(t_tetr *t)
+static void		offset_h(t_tetr *t)
 {
 	int	i;
 	int	j;
@@ -54,7 +54,7 @@ static void	offset_h(t_tetr *t)
 	}
 }
 
-static void	offset_v(t_tetr *t)
+static void		offset_v(t_tetr *t)
 {
 	int	i;
 	int	j;
@@ -73,7 +73,7 @@ static void	offset_v(t_tetr *t)
 	}
 }
 
-t_tetr		*make_tetr(char *s)
+static t_tetr	*make_tetr(char *s)
 {
 	t_tetr	*t;
 	int		i;
@@ -97,7 +97,7 @@ t_tetr		*make_tetr(char *s)
 	return (t);
 }
 
-t_list		*make_list(char *inp)
+t_list			*make_list(char *inp)
 {
 	int		i;
 	t_tetr	*t;

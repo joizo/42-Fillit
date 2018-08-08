@@ -6,7 +6,7 @@
 #    By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/15 00:08:04 by ofedoryc          #+#    #+#              #
-#    Updated: 2018/08/07 15:08:56 by mpetruno         ###   ########.fr        #
+#    Updated: 2018/08/08 17:37:43 by mpetruno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ FILES = ft_checker.c \
 		ft_global_checker.c \
 		ft_tetr_checker.c \
 		tetr.c \
+		map.c \
 		main.c
 
 LIB = ./libft/libft.a
