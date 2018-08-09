@@ -20,6 +20,7 @@ FILES = ft_checker.c \
 		ft_tetr_checker.c \
 		tetr.c \
 		map.c \
+		solver.c \
 		main.c
 
 LIB = ./libft/libft.a

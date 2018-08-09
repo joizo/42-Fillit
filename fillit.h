@@ -22,6 +22,7 @@ typedef	struct	s_tetr
 
 typedef	struct	s_map
 {
+	char		symbol;
 	int			size;
 	char		**cell;
 }				t_map;
@@ -53,10 +54,7 @@ t_list	*make_list(char *inp);
 t_map	*make_map(int size);
 void	print_map(t_map *map);
 
-/*
 //solver.c
-int		solve(t_map *map);
-
-*/
+void	solve(t_map **map, t_list *lst);
 
 #endif

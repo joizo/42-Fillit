@@ -31,6 +31,7 @@ t_map	*make_map(int size)
 			p[i][j] = '.';
 		i++;
 	}
+	m->symbol = 'A';
 	m->size = size;
 	m->cell = p;
 	return (m);

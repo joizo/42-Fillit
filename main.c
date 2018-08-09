@@ -26,7 +26,7 @@ char	*ft_reader(char *a_v)
 		ft_error();
 	buf = ft_strnew(BUF_SIZE);
 	f_read = read(f_open, buf, BUF_SIZE);
-	if (buf[0] == 0)
+	if (f_read == 0)
 		ft_error();
 	if (close(f_open) == -1)
 		ft_error();
@@ -53,7 +53,7 @@ int		main(int a_c, char **a_v)
 	list = make_list(input_file);
 //	print_list(list); // for debug only
 	map = make_map(2);
-//	solve(map);
+	solve(&map, list);
 	print_map(map);
 	return (0);
 }

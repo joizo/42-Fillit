@@ -15,16 +15,59 @@
 //try to place tetr t on map and return 1 if success, 0 on error.
 static int		place(t_tetr *t, t_map *m, int i, int j)
 {
-	
+	int	x;
+	int	y;
+	int	count;
+
+	count = 0;
+	y = 0;
+	while (y < 4 && i + y < m->size)
+	{
+		x = 0;
+		while (x < 4 && j + x < m->size)
+		{
+			if (t->cell[y][x] == '#' && m->cell[i + y][j + x] == '.')
+				count++;
+			if (count == 4)
+				return (1);
+			x++;
+		}
+		y++;
+	}
+	return (0);
 }
 
 //inserts tetr t into map and iterates letter on map
 static void		set(t_tetr *t, t_map *m, int i, int j)
 {
+	int	x;
+	int	y;
+	int	count;
 
+	count = 0;
+	y = 0;
+	while (y < 4 && i + y < m->size)
+	{
+		x = 0;
+		while (x < 4 && j + x < m->size)
+		{
+			if (t->cell[y][x] == '#' && m->cell[i + y][j + x] == '.')
+			{
+				m->cell[i + y][j + x] = m->symbol;
+				count++;
+			}
+			if (count == 4)
+			{
+				m->symbol++;
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
-static int		put(t_term *t, t_map *m)
+static int		put(t_tetr *t, t_map *m)
 {
 	int	i;
 	int	j;
@@ -47,7 +90,8 @@ static int		put(t_term *t, t_map *m)
 	return (0);
 }
 
-void			solve(t_map *map, t_list lst)
+
+void			solve(t_map **map, t_list *lst)
 {
 	t_list	*tmp;
 	int		size;
@@ -55,16 +99,27 @@ void			solve(t_map *map, t_list lst)
 	if (map == 0 || lst == 0)
 		ft_error();
 	tmp = lst;
+
+
 	while (tmp)
 	{
-		if (!put((t_term *)tmp->content, map))
+		if (!put((t_tetr *)(tmp->content), *map))
 		{
-			size = map->size + 1;
-			free((void *)map);
-			map = make_map(size);
+			size = (*map)->size + 1;
+			free((void *)(*map));
+			*map = make_map(size);
 			tmp = lst;
 		}
 		else
 			tmp = tmp->next;
+/*
+// uncomment this to see solver progress on each step except 1st step when map=2x2
+
+ft_putstr("map size: ");
+ft_putnbr((*map)->size);
+ft_putchar('\n');
+print_map(*map);
+ft_putstr("====================\n");
+*/
 	}
 }
