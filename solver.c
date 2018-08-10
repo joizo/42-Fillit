@@ -6,13 +6,12 @@
 /*   By: mpetruno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 17:48:04 by mpetruno          #+#    #+#             */
-/*   Updated: 2018/08/08 20:00:44 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/10 10:39:59 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-//try to place tetr t on map and return 1 if success, 0 on error.
 static int		place(t_tetr *t, t_map *m, int i, int j)
 {
 	int	x;
@@ -37,7 +36,6 @@ static int		place(t_tetr *t, t_map *m, int i, int j)
 	return (0);
 }
 
-//inserts tetr t into map and iterates letter on map
 static void		set(t_tetr *t, t_map *m, int i, int j)
 {
 	int	x;
@@ -78,7 +76,8 @@ static int		put(t_tetr *t, t_map *m)
 		j = 0;
 		while (j < m->size)
 		{
-			if (m->cell[i][j] == '.' && place(t, m, i, j))
+			//if (m->cell[i][j] == '.' && place(t, m, i, j))
+			if (place(t, m, i, j))
 			{
 				set(t, m, i, j);
 				return (1);

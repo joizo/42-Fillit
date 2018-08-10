@@ -6,7 +6,7 @@
 /*   By: mpetruno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 14:28:05 by mpetruno          #+#    #+#             */
-/*   Updated: 2018/08/08 17:32:19 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/10 11:46:01 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void		print_list(t_list *l)
 		print_tetr((t_tetr *)(l->content));
 		l = l->next;
 	}
+	ft_putstr("End printing list...\n");
 }
 
 static void		offset_h(t_tetr *t)
@@ -84,12 +85,9 @@ static t_tetr	*make_tetr(char *s)
 	i = 0;
 	while (i < 4)
 	{
-		j = 0;
-		while (j < 4)
-		{
+		j = -1;
+		while (++j < 4)
 			t->cell[i][j] = s[j + i * 5];
-			j++;
-		}
 		i++;
 	}
 	offset_h(t);

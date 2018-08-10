@@ -6,7 +6,7 @@
 /*   By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 21:30:26 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/08/08 17:44:38 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/10 12:03:06 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,9 @@ int		main(int a_c, char **a_v)
 
 	if (ft_checker(input_file) == 0)
 		ft_error();
-	else
-		ft_putchar('\n');
 	list = make_list(input_file);
-//	print_list(list); // for debug only
+	list = ft_lstreverse(list);
+//	print_list(list);
 	map = make_map(2);
 	solve(&map, list);
 	print_map(map);

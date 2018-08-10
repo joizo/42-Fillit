@@ -6,7 +6,7 @@
 /*   By: mpetruno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 17:24:56 by mpetruno          #+#    #+#             */
-/*   Updated: 2018/08/08 17:47:02 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/10 10:49:48 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ t_map	*make_map(int size)
 	i = 0;
 	while (i < size)
 	{
-		p[i] = ft_strnew(size);
+		p[i] = (char *)malloc(size + 1);
 		j = -1;
 		while (++j < size)
 			p[i][j] = '.';
+		p[i][size] = '\0';
 		i++;
 	}
 	m->symbol = 'A';

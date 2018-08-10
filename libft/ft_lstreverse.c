@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checker.c                                       :+:      :+:    :+:   */
+/*   ft_lstreverse.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mpetruno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/22 17:57:54 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/08/10 11:43:40 by mpetruno         ###   ########.fr       */
+/*   Created: 2018/08/10 09:28:09 by mpetruno          #+#    #+#             */
+/*   Updated: 2018/08/10 10:31:24 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int	ft_checker(char *str)
+t_list	*ft_lstreverse(t_list *lst)
 {
-	if (ft_tetr_elm_check(str) == 0 ||
-		ft_resh_check(str) == 0 ||
-		ft_comm_tetr(str) == 0 ||
-		ft_tetr_count_check(str) > 26  ||
-		ft_sym_row_check(str) == 0)
-		return (0);
-	return (1);
+	t_list	*tmp;
+	t_list	*prev;
+
+	prev = 0;
+	while (lst)
+	{
+		tmp = lst->next;
+		lst->next = prev;
+		prev = lst;
+		lst = tmp;
+	}
+	return (prev);
 }
