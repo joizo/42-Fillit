@@ -6,7 +6,7 @@
 /*   By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 03:01:00 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/08/10 11:56:04 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/12 16:17:56 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,22 +86,7 @@ int	ft_comm_tetr(char *str)
 	}
 	return (1);
 }
-/*
-int	ft_tetr_valid_check(char *str)
-{
-	int i;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '#' || str[i] == '.' || str[i] == '\n')
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}
-*/
 int	ft_sym_row_check(char *str)
 {
 	int i;

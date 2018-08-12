@@ -6,35 +6,11 @@
 /*   By: mpetruno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 14:28:05 by mpetruno          #+#    #+#             */
-/*   Updated: 2018/08/10 11:46:01 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/12 16:20:05 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-//for debug
-void		print_tetr(t_tetr *t)
-{
-	for (int i = 0; i < 4; i++)
-	{
-		for (int j = 0; j < 4; j++)
-			ft_putchar(t->cell[i][j]);
-		ft_putchar('\n');
-	}
-	ft_putstr("-------------\n");
-}
-
-//for debug
-void		print_list(t_list *l)
-{
-	ft_putstr("Printing list...\n");
-	while (l)
-	{
-		print_tetr((t_tetr *)(l->content));
-		l = l->next;
-	}
-	ft_putstr("End printing list...\n");
-}
 
 static void		offset_h(t_tetr *t)
 {
@@ -53,6 +29,11 @@ static void		offset_h(t_tetr *t)
 			t->cell[i][j] = '.';
 		}
 	}
+	j = 0;
+	while (j < 4 && (t->cell[0][j] == '#' || t->cell[1][j] == '#' ||
+			t->cell[2][j] == '#' || t->cell[3][j] == '#'))
+		j++;
+	t->w = j;
 }
 
 static void		offset_v(t_tetr *t)
@@ -72,15 +53,20 @@ static void		offset_v(t_tetr *t)
 			t->cell[i][j] = '.';
 		}
 	}
+	i = 0;
+	while (i < 4 && (t->cell[i][0] == '#' || t->cell[i][1] == '#' ||
+			t->cell[i][2] == '#' || t->cell[i][3] == '#'))
+		i++;
+	t->h = i;
 }
 
-static t_tetr	*make_tetr(char *s)
+static t_tetr	*make_tetr(char *s, char sym)
 {
 	t_tetr	*t;
 	int		i;
 	int		j;
 
-	if ((t = (t_tetr *)malloc(sizeof(t_tetr *))) == 0)
+	if ((t = (t_tetr *)malloc(sizeof(t_tetr))) == 0)
 		ft_error();
 	i = 0;
 	while (i < 4)
@@ -90,6 +76,9 @@ static t_tetr	*make_tetr(char *s)
 			t->cell[i][j] = s[j + i * 5];
 		i++;
 	}
+	t->w = 0;
+	t->h = 0;
+	t->symbol = sym;
 	offset_h(t);
 	offset_v(t);
 	return (t);
@@ -101,14 +90,17 @@ t_list			*make_list(char *inp)
 	t_tetr	*t;
 	t_list	*list;
 	t_list	*tmp;
+	char	symb;
 
 	i = 0;
 	list = 0;
+	symb = 'A';
 	while (inp[i])
 	{
-		t = make_tetr(inp + i);
+		t = make_tetr(inp + i, symb++);
 		if ((tmp = ft_lstnew((void *)t, sizeof(t_tetr))) == 0)
 			ft_error();
+		free((void *)t);
 		if (list == 0)
 			list = tmp;
 		else
@@ -118,5 +110,18 @@ t_list			*make_list(char *inp)
 			i++;
 	}
 	free((void *)inp);
-	return (list);
+	return (ft_lstreverse(list));
+}
+
+void			free_list(t_list *lst)
+{
+	t_list	*tmp;
+
+	while (lst)
+	{
+		tmp = lst->next;
+		free((void *)(lst->content));
+		free((void *)lst);
+		lst = tmp;
+	}
 }

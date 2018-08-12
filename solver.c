@@ -6,11 +6,40 @@
 /*   By: mpetruno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 17:48:04 by mpetruno          #+#    #+#             */
-/*   Updated: 2018/08/10 10:39:59 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/12 17:35:59 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+static void		set(t_tetr *t, t_map *m, t_point *p, char c)
+{
+	int	x;
+	int	y;
+	int i;
+	int j;
+	int	count;
+
+	i = p->y;
+	j = p->x;
+	free((void *)p);
+	count = 0;
+	y = -1;
+	while (++y < t->h)
+	{
+		x = -1;
+		while (++x < t->w)
+		{
+			if (t->cell[y][x] == '#' && m->cell[i + y][j + x] != c)
+			{
+				m->cell[i + y][j + x] = c;
+				count++;
+			}
+			if (count == 4)
+				return ;
+		}
+	}
+}
 
 static int		place(t_tetr *t, t_map *m, int i, int j)
 {
@@ -20,15 +49,18 @@ static int		place(t_tetr *t, t_map *m, int i, int j)
 
 	count = 0;
 	y = 0;
-	while (y < 4 && i + y < m->size)
+	while (y < t->h)
 	{
 		x = 0;
-		while (x < 4 && j + x < m->size)
+		while (x < t->w)
 		{
 			if (t->cell[y][x] == '#' && m->cell[i + y][j + x] == '.')
 				count++;
 			if (count == 4)
+			{
+				set(t, m, make_pt(j, i), t->symbol);
 				return (1);
+			}
 			x++;
 		}
 		y++;
@@ -36,51 +68,27 @@ static int		place(t_tetr *t, t_map *m, int i, int j)
 	return (0);
 }
 
-static void		set(t_tetr *t, t_map *m, int i, int j)
+static int		put(t_list *lst, t_map *m)
 {
-	int	x;
-	int	y;
-	int	count;
+	int		i;
+	int		j;
+	t_tetr	*t;
 
-	count = 0;
-	y = 0;
-	while (y < 4 && i + y < m->size)
-	{
-		x = 0;
-		while (x < 4 && j + x < m->size)
-		{
-			if (t->cell[y][x] == '#' && m->cell[i + y][j + x] == '.')
-			{
-				m->cell[i + y][j + x] = m->symbol;
-				count++;
-			}
-			if (count == 4)
-			{
-				m->symbol++;
-				return ;
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
-static int		put(t_tetr *t, t_map *m)
-{
-	int	i;
-	int	j;
-
+	if (lst == 0)
+		return (1);
 	i = 0;
-	while (i < m->size)
+	t = (t_tetr *)(lst->content);
+	while (i < m->size - t->h + 1)
 	{
 		j = 0;
-		while (j < m->size)
+		while (j < m->size - t->w + 1)
 		{
-			//if (m->cell[i][j] == '.' && place(t, m, i, j))
 			if (place(t, m, i, j))
 			{
-				set(t, m, i, j);
-				return (1);
+				if (!put(lst->next, m))
+					set(t, m, make_pt(j, i), '.');
+				else
+					return (1);
 			}
 			j++;
 		}
@@ -89,36 +97,24 @@ static int		put(t_tetr *t, t_map *m)
 	return (0);
 }
 
-
-void			solve(t_map **map, t_list *lst)
+t_map			*solve(t_list *lst)
 {
-	t_list	*tmp;
 	int		size;
+	int		h;
+	int		w;
+	t_map	*map;
 
-	if (map == 0 || lst == 0)
+	if (lst == 0)
 		ft_error();
-	tmp = lst;
-
-
-	while (tmp)
+	h = ((t_tetr *)(lst->content))->h;
+	w = ((t_tetr *)(lst->content))->h;
+	size = (h > w) ? h : w;
+	map = make_map(size);
+	while (!put(lst, map))
 	{
-		if (!put((t_tetr *)(tmp->content), *map))
-		{
-			size = (*map)->size + 1;
-			free((void *)(*map));
-			*map = make_map(size);
-			tmp = lst;
-		}
-		else
-			tmp = tmp->next;
-/*
-// uncomment this to see solver progress on each step except 1st step when map=2x2
-
-ft_putstr("map size: ");
-ft_putnbr((*map)->size);
-ft_putchar('\n');
-print_map(*map);
-ft_putstr("====================\n");
-*/
+		size++;
+		free_map(map);
+		map = make_map(size);
 	}
+	return (map);
 }

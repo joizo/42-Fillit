@@ -6,7 +6,7 @@
 #    By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/10 21:38:21 by ofedoryc          #+#    #+#              #
-#    Updated: 2018/08/10 09:50:24 by mpetruno         ###   ########.fr        #
+#    Updated: 2018/08/12 16:11:51 by mpetruno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ $(NAME): $(OFILES) $(HEADERS)
 	ar rc $(NAME) $(OFILES)
 
 $(OFILES): %.o:%.c
-	gcc $(FLAGS) -c $< -o $@
+	@gcc $(FLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OFILES)

@@ -6,7 +6,7 @@
 #    By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/15 00:08:04 by ofedoryc          #+#    #+#              #
-#    Updated: 2018/08/08 17:37:43 by mpetruno         ###   ########.fr        #
+#    Updated: 2018/08/12 17:30:09 by mpetruno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ FILES = ft_checker.c \
 		tetr.c \
 		map.c \
 		solver.c \
+		point.c \
 		main.c
 
 LIB = ./libft/libft.a
@@ -42,17 +43,13 @@ O_FILES = $(FILES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(LIB) $(HEAD) $(O_FILES)
-	@echo "Assempling executable..."
 	$(CC) $(O_FILES) $(LIB) $(FLAGS) -I $(HEAD) -o $(NAME)
-	@echo "End assembling"
 
 $(LIB):
 	make -C $(LIBFT)
 
 %.o: %.c
-	@echo "Compiling file... "
 	$(CC) -c $^ $(FLAGS)
-	@echo "End compiling"
 
 clean:
 	rm -f $(O_FILES)

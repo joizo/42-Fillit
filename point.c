@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checker.c                                       :+:      :+:    :+:   */
+/*   point.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mpetruno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/22 17:57:54 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/08/12 16:15:03 by mpetruno         ###   ########.fr       */
+/*   Created: 2018/08/12 16:33:59 by mpetruno          #+#    #+#             */
+/*   Updated: 2018/08/12 16:41:52 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	ft_checker(char *str)
+t_point	*make_pt(int x, int y)
 {
-	if (ft_tetr_elm_check(str) == 0 ||
-		ft_resh_check(str) == 0 ||
-		ft_comm_tetr(str) == 0 ||
-		ft_tetr_count_check(str) > 26 ||
-		ft_sym_row_check(str) == 0)
-		return (0);
-	return (1);
+	t_point	*p;
+
+	if ((p = (t_point *)malloc(sizeof(t_point))) == 0)
+		ft_error();
+	p->x = x;
+	p->y = y;
+	return (p);
 }

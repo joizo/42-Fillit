@@ -6,21 +6,19 @@
 /*   By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 21:30:26 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/08/10 12:03:06 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/12 16:20:49 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-//int	ft_tetr_elm_check(char *s);
-void	print_list(t_list *l);
 #define BUF_SIZE 545
 
 char	*ft_reader(char *a_v)
 {
-	int f_open;
-	int f_read;
-	char *buf;
+	int		f_open;
+	int		f_read;
+	char	*buf;
 
 	if ((f_open = open(a_v, O_RDONLY)) == -1)
 		ft_error();
@@ -39,20 +37,15 @@ int		main(int a_c, char **a_v)
 	t_list	*list;
 	t_map	*map;
 
-//ft_putstr(a_v[1]);
-//ft_putstr(": ");
-
 	if (a_c != 2)
 		ft_show_usage();
 	input_file = ft_reader(a_v[1]);
-
 	if (ft_checker(input_file) == 0)
 		ft_error();
 	list = make_list(input_file);
-	list = ft_lstreverse(list);
-//	print_list(list);
-	map = make_map(2);
-	solve(&map, list);
+	map = solve(list);
 	print_map(map);
+	free_map(map);
+	free_list(list);
 	return (0);
 }
