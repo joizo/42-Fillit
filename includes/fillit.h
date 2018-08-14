@@ -6,14 +6,14 @@
 /*   By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 21:30:17 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/08/12 16:39:17 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/14 16:23:44 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
-# include "./libft/libft.h"
 # include <fcntl.h>
+# include "libft.h"
 
 typedef	struct	s_tetr
 {

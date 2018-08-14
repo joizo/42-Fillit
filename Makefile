@@ -6,7 +6,7 @@
 #    By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/15 00:08:04 by ofedoryc          #+#    #+#              #
-#    Updated: 2018/08/12 17:30:09 by mpetruno         ###   ########.fr        #
+#    Updated: 2018/08/14 17:11:56 by mpetruno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,51 +14,51 @@ NAME = fillit
 
 CC = gcc
 
+SRC = ./src/
+OBJ = ./obj/
+INC = ./includes/
+LIB_DIR = ./libft/
+
+LIB = $(LIB_DIR)libft.a
+
 FILES = ft_checker.c \
 		ft_error.c \
-		ft_global_checker.c \
 		ft_tetr_checker.c \
 		tetr.c \
 		map.c \
 		solver.c \
-		point.c \
 		main.c
 
-LIB = ./libft/libft.a
+S_FILES = $(addprefix $(SRC), $(FILES))
 
-LIBFT = ./libft/
+O_FILES = $(addprefix $(OBJ), $(FILES:.c=.o))
 
-HEAD = fillit.h
+H_FILES = $(INC)fillit.h $(LIB_DIR)libft.h
 
 FLAGS = -Wall -Wextra -Werror
 
-O_FILES = $(FILES:.c=.o)
-
-#list_obj:
-#	@echo $(O_FILES)
-#
-#list_src:
-#	@echo $(FILES)
-
 all: $(NAME)
 
-$(NAME): $(LIB) $(HEAD) $(O_FILES)
-	$(CC) $(O_FILES) $(LIB) $(FLAGS) -I $(HEAD) -o $(NAME)
+$(NAME): $(LIB) $(H_FILES) $(O_FILES)
+	@echo "Compiling fillit..."
+	@$(CC) $(O_FILES) $(LIB) $(FLAGS) -I $(INC) -I $(LIB_DIR) -o $(NAME)
+	@echo "Finished."
 
 $(LIB):
-	make -C $(LIBFT)
+	make -C $(LIB_DIR) -silent
 
-%.o: %.c
-	$(CC) -c $^ $(FLAGS)
+$(OBJ)%.o: $(SRC)%.c
+	@mkdir -p $(OBJ)
+	@$(CC) -c $^ $(FLAGS) -I $(INC) -I $(LIB_DIR) -o $@
 
 clean:
-	rm -f $(O_FILES)
-	make -C ./libft/ clean # -C убивает только файл
+	rm -fr $(OBJ)
+	make -C ./libft/ clean
 
 fclean: clean
-	rm -f $(NAME)  # -f убивает только файл
+	rm -f $(NAME)
 	make -C ./libft/ fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re comp

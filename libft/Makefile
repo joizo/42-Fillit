@@ -6,16 +6,14 @@
 #    By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/10 21:38:21 by ofedoryc          #+#    #+#              #
-#    Updated: 2018/08/12 16:11:51 by mpetruno         ###   ########.fr        #
+#    Updated: 2018/08/14 16:10:20 by mpetruno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 FILES = ft_lstmap.c ft_putnbr.c ft_strmap.c \
-		ft_lstnew.c \
-		ft_lstsize.c \
-		ft_lstreverse.c \
+		ft_lstnew.c ft_lstsize.c ft_lstreverse.c \
 		ft_putnbr_fd.c ft_strmapi.c ft_atoi.c  \
 		ft_putstr.c ft_strncat.c ft_bzero.c \
 		ft_putstr_fd.c ft_strncmp.c ft_memalloc.c \
@@ -45,7 +43,7 @@ $(NAME): $(OFILES) $(HEADERS)
 	ar rc $(NAME) $(OFILES)
 
 $(OFILES): %.o:%.c
-	@gcc $(FLAGS) -c $< -o $@
+	gcc $(FLAGS) -c $<
 
 clean:
 	rm -f $(OFILES)
