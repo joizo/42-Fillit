@@ -6,7 +6,7 @@
 #    By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/15 00:08:04 by ofedoryc          #+#    #+#              #
-#    Updated: 2018/08/14 17:11:56 by mpetruno         ###   ########.fr        #
+#    Updated: 2018/08/14 20:49:37 by mpetruno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,6 @@ NAME = fillit
 
 CC = gcc
 
-SRC = ./src/
-OBJ = ./obj/
-INC = ./includes/
 LIB_DIR = ./libft/
 
 LIB = $(LIB_DIR)libft.a
@@ -29,11 +26,9 @@ FILES = ft_checker.c \
 		solver.c \
 		main.c
 
-S_FILES = $(addprefix $(SRC), $(FILES))
+O_FILES = $(FILES:.c=.o)
 
-O_FILES = $(addprefix $(OBJ), $(FILES:.c=.o))
-
-H_FILES = $(INC)fillit.h $(LIB_DIR)libft.h
+H_FILES = fillit.h
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -41,18 +36,17 @@ all: $(NAME)
 
 $(NAME): $(LIB) $(H_FILES) $(O_FILES)
 	@echo "Compiling fillit..."
-	@$(CC) $(O_FILES) $(LIB) $(FLAGS) -I $(INC) -I $(LIB_DIR) -o $(NAME)
+	@$(CC) $(O_FILES) $(LIB) $(FLAGS) -I $(LIB_DIR) -o $(NAME)
 	@echo "Finished."
 
 $(LIB):
 	make -C $(LIB_DIR) -silent
 
-$(OBJ)%.o: $(SRC)%.c
-	@mkdir -p $(OBJ)
-	@$(CC) -c $^ $(FLAGS) -I $(INC) -I $(LIB_DIR) -o $@
+%.o: %.c
+	@$(CC) -c $^ $(FLAGS) -I $(LIB_DIR) -o $@
 
 clean:
-	rm -fr $(OBJ)
+	rm -f $(O_FILES)
 	make -C ./libft/ clean
 
 fclean: clean
