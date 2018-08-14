@@ -6,7 +6,7 @@
 /*   By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 21:30:17 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/08/14 16:23:44 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/14 19:48:01 by ofedoryc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ typedef	struct	s_map
 	char		**cell;
 }				t_map;
 
-typedef struct	s_point
-{
-	int			x;
-	int			y;
-}				t_point;
-
-t_point			*make_pt(int x, int y);
 void			ft_error(void);
 void			ft_show_usage(void);
 char			*ft_reader(char *a_v);
