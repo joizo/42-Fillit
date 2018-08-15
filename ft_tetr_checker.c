@@ -6,7 +6,7 @@
 /*   By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 03:01:00 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/08/14 16:13:09 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/15 21:17:53 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,9 @@ int	ft_sym_row_check(char *str)
 	while (str[++i])
 	{
 		sym = 0;
-		while (str[i++] != '\n')
-			sym++;
-		i--;
-		if (sym != 4)
+		while (str[i] != '\n' && str[i] != 0)
+			sym += (++i) ? 1 : 1;
+		if (sym != 4 || str[i] != '\n')
 			return (0);
 		row++;
 		if (str[i] == '\n' && (str[i + 1] == '\n' || str[i + 1] == '\0'))
