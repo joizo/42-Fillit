@@ -6,7 +6,7 @@
 /*   By: mpetruno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 17:48:04 by mpetruno          #+#    #+#             */
-/*   Updated: 2018/08/14 15:40:34 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/17 20:41:12 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ static int		place(t_tetr *t, t_map *m, int i, int j)
 	int	count;
 
 	count = 0;
-	y = 0;
-	while (y < t->h)
+	y = -1;
+	while (++y < t->h)
 	{
-		x = 0;
-		while (x < t->w)
+		x = -1;
+		while (++x < t->w)
 		{
 			if (t->cell[y][x] == '#' && m->cell[i + y][j + x] == '.')
 				count++;
@@ -61,9 +61,7 @@ static int		place(t_tetr *t, t_map *m, int i, int j)
 				set(t, m, t->symbol);
 				return (1);
 			}
-			x++;
 		}
-		y++;
 	}
 	return (0);
 }
@@ -84,8 +82,6 @@ static int		put(t_list *lst, t_map *m)
 		while (++j < m->size - t->w + 1)
 			if (place(t, m, i, j))
 			{
-//system("clear");
-//print_map(m);
 				if (!put(lst->next, m))
 				{
 					g_p_x = j;

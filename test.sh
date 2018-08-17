@@ -16,6 +16,8 @@ echo "List of NOT valid files:"
 (./fillit inp/invalid_input10)
 (./fillit inp/invalid_input11)
 (./fillit inp/invalid_input12)
+echo "Testing 27 tetr. file:"
+time (./fillit inp/valid_input6)
 
 echo ""
 echo "List of VALID files:"
@@ -29,7 +31,5 @@ time (./fillit inp/valid_input4)
 
 echo "Testing 26 tetr. file:"
 time (./fillit inp/valid_input5)
-echo "Testing 27 tetr. file:"
-time (./fillit inp/valid_input6)
 
 

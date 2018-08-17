@@ -6,13 +6,13 @@
 /*   By: ofedoryc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 21:30:26 by ofedoryc          #+#    #+#             */
-/*   Updated: 2018/08/14 16:15:29 by mpetruno         ###   ########.fr       */
+/*   Updated: 2018/08/17 20:28:24 by mpetruno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-#define BUF_SIZE 545 + 21
+#define BUF_SIZE 666
 
 char	*ft_reader(char *a_v)
 {
