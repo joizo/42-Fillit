@@ -92,9 +92,9 @@ int	ft_tetr_count_check(char *str)
 	int i;
 	int count;
 
-	i = 0;
+	i = -1;
 	count = 0;
-	while (str[i++])
+	while (str[++i])
 		if (str[i] == '\n' && (str[i + 1] == '\n' || str[i + 1] == '\0'))
 			count++;
 	return (count);

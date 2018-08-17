@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-#define BUF_SIZE 545
+#define BUF_SIZE 545 + 21
 
 char	*ft_reader(char *a_v)
 {

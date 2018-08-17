@@ -84,6 +84,8 @@ static int		put(t_list *lst, t_map *m)
 		while (++j < m->size - t->w + 1)
 			if (place(t, m, i, j))
 			{
+//system("clear");
+//print_map(m);
 				if (!put(lst->next, m))
 				{
 					g_p_x = j;
